@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Agendar Transferência</h2>
+  <form [formGroup]="transferenciaForm" (ngSubmit)="agendarTransferencia()">
+    <div class="mb-3">
+      <label for="contaOrigem" class="form-label">Conta de Origem</label>
+      <input type="text" class="form-control" id="contaOrigem" formControlName="contaOrigem" required>
+      <div *ngIf="transferenciaForm.get('contaOrigem')?.invalid && transferenciaForm.get('contaOrigem')?.touched" class="text-danger">
+        Este campo é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="contaDestino" class="form-label">Conta de Destino</label>
+      <input type="text" class="form-control" id="contaDestino" formControlName="contaDestino" required>
+      <div *ngIf="transferenciaForm.get('contaDestino')?.invalid && transferenciaForm.get('contaDestino')?.touched" class="text-danger">
+        Este campo é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="valor" class="form-label">Valor</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="valor" 
+        formControlName="valor" 
+        mask="separator.2" 
+        prefix="R$ " 
+        [dropSpecialCharacters]="false" 
+        required 
+      />
+      <div *ngIf="transferenciaForm.get('valor')?.invalid && transferenciaForm.get('valor')?.touched" class="text-danger">
+        Este campo é obrigatório e deve ser maior que zero.
+      </div>
+    </div>
+
+  <!--   <div class="mb-3">
+      <label for="taxa" class="form-label">Taxa</label>
+      <input type="number" class="form-control" id="taxa" formControlName="taxa" required>
+      <div *ngIf="transferenciaForm.get('taxa')?.invalid && transferenciaForm.get('taxa')?.touched" class="text-danger">
+        Este campo é obrigatório e deve ser maior que zero.
+      </div>
+    </div> -->
+
+ <!--    <div class="mb-3">
+      <label for="dataTransferencia" class="form-label">Data da Transferência</label>
+      <input type="date" class="form-control" id="dataTransferencia" formControlName="dataTransferencia" required>
+      <div *ngIf="transferenciaForm.get('dataTransferencia')?.invalid && transferenciaForm.get('dataTransferencia')?.touched" class="text-danger">
+        Este campo é obrigatório.
+      </div>
+    </div> -->
+
+    <div class="mb-3">
+      <label for="dataAgendamento" class="form-label">Data de Agendamento</label>
+      <input type="date" class="form-control" id="dataAgendamento" formControlName="dataAgendamento" required>
+      <div *ngIf="transferenciaForm.get('dataAgendamento')?.invalid && transferenciaForm.get('dataAgendamento')?.touched" class="text-danger">
+        Este campo é obrigatório.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Agendar Transferência</button>
+  </form>
+</div>

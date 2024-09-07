@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Extrato de Transferências</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Conta Origem</th>
+          <th>Conta Destino</th>
+          <th>Valor</th>
+          <th>Taxa</th>
+          <th>Data da Transferência</th>
+          <th>Data de Agendamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transferencia of transferencias">
+          <td>{{ transferencia.contaOrigem }}</td>
+          <td>{{ transferencia.contaDestino }}</td>
+          <td>{{ formatCurrency(transferencia.valor) }}</td>
+          <td>{{ (transferencia.taxa / 100) | percent:'1.1-1' }}</td>
+          <td>{{ transferencia.dataTransferencia | date:'dd/MM/yyyy' }}</td>
+          <td>{{ transferencia.dataAgendamento | date:'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <a class="page-link" (click)="mudarPagina(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i">
+        <a class="page-link" (click)="mudarPagina(i)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <a class="page-link" (click)="mudarPagina(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
