@@ -45,4 +45,37 @@ O sistema de agendamento de transferências financeiras permite que os usuários
 3. **Extrato de Agendamentos**:
    - O usuário pode visualizar um extrato de todas as transferências agendadas.
 
-## Estrutura do Projeto
+Instalação do JDK Java 11
+
+Certifique-se de ter o JDK Java 11 instalado em seu sistema. Você pode baixar o JDK 11 do site oficial da Oracle ou usar uma alternativa como o OpenJDK.
+Compilação do Projeto
+
+Navegue até o diretório do projeto back-end usando o terminal ou prompt de comando.
+Execute o comando mvn install para compilar o projeto e resolver as dependências. Este comando usa o Apache Maven, uma ferramenta de gerenciamento e construção de projetos Java.
+Alternativamente, você pode abrir o projeto no IntelliJ IDEA:
+Abra o IntelliJ IDEA.
+Selecione File > Open... e escolha o diretório do projeto.
+IntelliJ IDEA irá detectar o projeto Maven e carregar as dependências automaticamente.
+
+Instalação do Node.js
+
+Certifique-se de ter o Node.js 14.18.1 instalado em seu sistema. Você pode baixar o Node.js do site oficial. Verifique a versão após a instalação usando o comando:
+bash
+Copiar código
+node -v
+Certifique-se de que a versão exibida seja 14.18.1 ou superior.
+Instalação das Dependências do Projeto
+
+Navegue até o diretório do projeto front-end usando o terminal ou prompt de comando.
+Execute o comando npm install para instalar todas as dependências listadas no arquivo package.json do projeto Angular. Isso garante que todas as bibliotecas e pacotes necessários para o projeto estejam disponíveis.
+Executando o Servidor de Desenvolvimento
+
+Após a instalação das dependências, execute o comando:
+bash
+Copiar código
+npm start
+ou
+bash
+Copiar código
+ng serve
+para iniciar o servidor de desenvolvimento Angular. O projeto estará disponível em http://localhost:4200 por padrão.
