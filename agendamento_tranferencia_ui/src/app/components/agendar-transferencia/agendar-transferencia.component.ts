@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class AgendarTransferenciaComponent implements OnInit {
   transferenciaForm: FormGroup;
+  loading = false;
 
   constructor(private fb: FormBuilder, 
     private transferenciaService: TransferenciaService,
@@ -27,11 +28,15 @@ export class AgendarTransferenciaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
+  }
 
     public agendarTransferencia() {
     if (this.transferenciaForm.valid) {
-        console.log('Valores do formulário:', this.transferenciaForm.value);
 
         const transferencia: Transferencia = {
             contaOrigem: this.transferenciaForm.value.contaOrigem,
@@ -44,23 +49,18 @@ export class AgendarTransferenciaComponent implements OnInit {
             dataAgendamento: new Date().toISOString().split('T')[0]
         };
 
-        console.log('Payload enviado:', JSON.stringify(transferencia, null, 2));
-
         this.transferenciaService.agendarTransferencia(transferencia).subscribe(
             response => {
-                console.log('Transferência agendada:', response);
-                this.toastr.success('Por favor, preencha todos os campos obrigatórios.', 'Sucesso!');
+                this.toastr.success('Transferência feita com sucesso.', 'Sucesso!');
                 this.limpar();
             },
             error => {
-              console.log('Estrutura do erro:', JSON.stringify(error));
               const errorMessage =  error.error;
               Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: errorMessage,
               });
-              /* alert('Mensagem: ' + errorMessage); */
             }
         );
     } else {

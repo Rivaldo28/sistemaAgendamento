@@ -40,13 +40,3 @@ button:hover{
   visibility: visible;
   opacity: 1;
 }
-
-input#dataTransferencia {
-  width: 400px !important;
-}
-
-@media screen and (max-width: 500px) {
-  input#dataTransferencia {
-    width: 100% !important;
-  }
-}

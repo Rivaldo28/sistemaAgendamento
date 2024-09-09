@@ -13,13 +13,13 @@ export class TransferenciaService {
 
   constructor(private http: HttpClient) {}
 
-  obterExtrato(page: number = 0, size: number = 10): Observable<Page<Transferencia>> {
+  public obterExtrato(page: number = 0, size: number = 10): Observable<Page<Transferencia>> {
     return this.http.get<Page<Transferencia>>(`${this.apiUrl}?page=${page}&size=${size}`).pipe(
       catchError(this.handleError)
     );
   }
 
-    agendarTransferencia(transferencia: Transferencia): Observable<any> {
+    public agendarTransferencia(transferencia: Transferencia): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}`, transferencia);
     }
   

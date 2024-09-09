@@ -23,8 +23,6 @@ public class TransferenciaController {
     @PostMapping
     public ResponseEntity<?> agendarTransferencia(@RequestBody Transferencia transferencia) {
         try {
-            System.out.println("Transferência recebida: " + transferencia);
-            System.out.println("Data de agendamento: " + transferencia.getDataAgendamento());
             Transferencia agendada = service.agendarTransferencia(transferencia);
             return ResponseEntity.ok(agendada);
         } catch (TaxaNaoAplicavelException e) {

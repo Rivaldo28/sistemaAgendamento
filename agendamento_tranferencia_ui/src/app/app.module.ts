@@ -11,18 +11,26 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule, Routes } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardTaxasComponent } from './components/dashboard-taxas/dashboard-taxas.component';
+import { ChartsModule } from 'ng2-charts';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/transferencia', pathMatch: 'full' }, 
   { path: 'transferencia', component: AgendarTransferenciaComponent },
-  { path: 'extrato', component: ExtratoComponent }
+  { path: 'extrato', component: ExtratoComponent },
+  { path: 'dashboard-taxas', component: DashboardTaxasComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     AgendarTransferenciaComponent,
-    ExtratoComponent
+    ExtratoComponent,
+    NavbarComponent,
+    DashboardTaxasComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +42,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ChartsModule     
   ],
   providers: [],
   bootstrap: [AppComponent]

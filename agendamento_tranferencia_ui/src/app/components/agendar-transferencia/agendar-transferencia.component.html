@@ -1,4 +1,7 @@
-<div class="container mt-5">
+<div *ngIf="loading" class="loading">
+  <app-loading></app-loading>
+</div>
+<div class="container mt-5 margin">
   <h2 class="text-center mb-4">Agendar Transferência</h2>
   <form [formGroup]="transferenciaForm" (ngSubmit)="agendarTransferencia()">
     <div class="mb-3">
@@ -31,41 +34,34 @@
       </div>
     </div>
 
-  <!--   <div class="mb-3">
-      <label for="taxa" class="form-label">Taxa</label>
-      <input type="number" class="form-control" id="taxa" formControlName="taxa" required>
-      <div *ngIf="transferenciaForm.get('taxa')?.invalid && transferenciaForm.get('taxa')?.touched" class="text-danger">
-        Este campo é obrigatório e deve ser maior que zero.
-      </div>
-    </div> -->
-
     <div class="mb-3">
-      <label for="dataTransferencia" class="form-label">Data da Transferência</label>
-      <input type="date" class="form-control" id="dataTransferencia" formControlName="dataTransferencia"  required style="width: 400px;">
+      <label for="dataTransferencia" class="form-label dataTransferencia">Data da Transferência</label>
+      <input type="date" class="form-control" id="dataTransferencia" formControlName="dataTransferencia"  required>
       <div *ngIf="transferenciaForm.get('dataTransferencia')?.invalid && transferenciaForm.get('dataTransferencia')?.touched" class="text-danger">
         Este campo é obrigatório.
       </div>
     </div>
+    
+  <div class="tooltip-container button-title">
+    <button type="button" class="btn btn-danger"  routerLink="/extrato" >
+      <i class="fa fa-file"></i>
+    </button>
+    <span class="tooltip-text text-title">Extrato de transferências</span>
+  </div>
 
-    <!-- <div class="mb-3">
-      <label for="dataAgendamento" class="form-label">Data de Agendamento</label>
-      <input type="date" class="form-control" id="dataAgendamento" formControlName="dataAgendamento" required style="width: 400px;">
-      <div *ngIf="transferenciaForm.get('dataAgendamento')?.invalid && transferenciaForm.get('dataAgendamento')?.touched" class="text-danger">
-        Este campo é obrigatório.
-      </div>
-    </div>
- -->
- <button type="button" class="btn btn-danger" title="Extrato de transferências" routerLink="/extrato" >
-  <i class="fa fa-file"></i>
-</button>
+  <div class="tooltip-container button-title">
+    <button type="button"  class="btn btn-danger" (click)="limpar()" [disabled]="isFormEmpty">
+      <i class="fa fa-eraser"></i>
+    </button>
+    <span class="tooltip-text text-title">Limpar</span>
+  </div>
 
-<button type="button"  class="btn btn-danger" title="Limpar" (click)="limpar()" [disabled]="isFormEmpty">
-  <i class="fa fa-eraser"></i>
-</button>
-
-<button  type="submit" class="btn btn-primary" title="Agendar Transferência">
-  <i class="fa fa-save"></i>
-</button>
+  <div class="tooltip-container button-title">
+    <button  type="submit" class="btn btn-primary" title="Agendar Transferência">
+      <i class="fa fa-save"></i>
+    </button>
+    <span class="tooltip-text text-title">Agendar</span>
+  </div>
 
   </form>
 </div>

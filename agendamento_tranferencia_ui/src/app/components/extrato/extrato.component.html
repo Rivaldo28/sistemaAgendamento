@@ -1,4 +1,7 @@
-<div class="container mt-5">
+<div *ngIf="loading" class="loading">
+  <app-loading></app-loading>
+</div>
+<div class="container mt-5 margin">
   <h2 class="text-center mb-4">Extrato de Transferências</h2>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -8,8 +11,8 @@
           <th>Conta Destino</th>
           <th>Valor</th>
           <th>Taxa</th>
-          <th>Data da Transferência</th>
-          <th>Data de Agendamento</th>
+          <th>Data da transferência</th>
+          <th>Data de agendamento</th>
         </tr>
       </thead>
       <tbody>
@@ -79,6 +82,13 @@
     </button>
     <span class="tooltip-text text-title">Fazer transferência</span>
  </div>
+
+  <div class="tooltip-container button-title csv">
+    <button type="button" class="btn btn-primary" (click)="exportToCsv()">
+      <i class="fa fa-file-excel-o"></i>
+    </button>
+    <span class="tooltip-text text-title">CSV/Excel</span>
+  </div>
 
  <div class="square"></div>
  <p class="p-legend"><strong>Legenda: </strong> Sem taxa %</p>
