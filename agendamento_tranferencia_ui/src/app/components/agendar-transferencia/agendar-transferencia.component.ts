@@ -35,37 +35,37 @@ export class AgendarTransferenciaComponent implements OnInit {
       }, 500);
   }
 
-    public agendarTransferencia() {
+  public agendarTransferencia() {
     if (this.transferenciaForm.valid) {
+      const transferencia: Transferencia = {
+        contaOrigem: this.transferenciaForm.value.contaOrigem,
+        contaDestino: this.transferenciaForm.value.contaDestino,
+        valor: this.transferenciaForm.value.valor 
+        ? parseFloat(this.transferenciaForm.value.valor.toString().replace(',', '.').replace(/[^0-9.-]+/g, "")) 
+        : 0,
+        taxa: this.transferenciaForm.value.taxa !== null ? this.transferenciaForm.value.taxa : null,
+        dataTransferencia: this.transferenciaForm.get('dataTransferencia')?.value || null,
+        dataAgendamento: new Date().toISOString().split('T')[0]
+      };
 
-        const transferencia: Transferencia = {
-            contaOrigem: this.transferenciaForm.value.contaOrigem,
-            contaDestino: this.transferenciaForm.value.contaDestino,
-            valor: this.transferenciaForm.value.valor 
-              ? parseFloat(this.transferenciaForm.value.valor.toString().replace(',', '.').replace(/[^0-9.-]+/g, "")) 
-              : 0,
-            taxa: this.transferenciaForm.value.taxa !== null ? this.transferenciaForm.value.taxa : null,
-            dataTransferencia: this.transferenciaForm.get('dataTransferencia')?.value || null,
-            dataAgendamento: new Date().toISOString().split('T')[0]
-        };
-
-        this.transferenciaService.agendarTransferencia(transferencia).subscribe(
-            response => {
-                this.toastr.success('Transferência feita com sucesso.', 'Sucesso!');
-                this.limpar();
-            },
-            error => {
-              const errorMessage =  error.error;
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: errorMessage,
-              });
-            }
-        );
-    } else {
-        this.toastr.error('Por favor, preencha todos os campos obrigatórios.', 'Erro!');
-    }
+      this.transferenciaService.agendarTransferencia(transferencia).subscribe(
+         response => {
+           this.toastr.success('Transferência feita com sucesso.', 'Sucesso!');
+           this.limpar();
+          },
+           error => {
+            const errorMessage =  error.error;
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: errorMessage,
+              footer: '<a href="#">O dia não pode ser menor que hoje nem maior que 51 dias.</a>'
+            });
+          }
+       );
+     } else {
+      this.toastr.error('Por favor, preencha todos os campos obrigatórios.', 'Erro!');
+     }
   } 
 
   public limpar() {
