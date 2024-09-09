@@ -9,20 +9,20 @@ import { TransferenciaService } from 'src/app/services/transferencia.service';
 })
 export class ExtratoComponent implements OnInit {
   transferencias: Transferencia[] = [];
-  totalPages: number = 0;  // Variável para armazenar o total de páginas
-  currentPage: number = 0;  // Variável para armazenar a página atual
-  itemsPerPage: number = 5; // Itens por página
+  totalPages: number = 0;  
+  currentPage: number = 0;  
+  itemsPerPage: number = 6; 
 
   constructor(private transferenciaService: TransferenciaService) { }
 
   ngOnInit(): void {
-    this.carregarTransferencias(); // Chama o método para carregar as transferências
+    this.carregarTransferencias();
   }
   
   carregarTransferencias(page: number = 0, size: number = 6): void {
     this.transferenciaService.obterExtrato(page, size).subscribe({
       next: (data) => {
-        this.transferencias = data.content; // Acessa a propriedade content
+        this.transferencias = data.content; 
         this.totalPages = data.totalPages;  
         this.currentPage = data.number;       
       },
@@ -34,7 +34,7 @@ export class ExtratoComponent implements OnInit {
 
   mudarPagina(page: number): void {
     if (page >= 0 && page < this.totalPages) {
-      this.carregarTransferencias(page, this.itemsPerPage); // Carrega a nova página
+      this.carregarTransferencias(page, this.itemsPerPage);
     }
   }
 

@@ -9,7 +9,7 @@ import { Page } from '../model/page.model';
   providedIn: 'root'
 })
 export class TransferenciaService {
-  private apiUrl = 'http://localhost:8080/api-transferencia'; // URL correta
+  private apiUrl = 'http://localhost:8080/api-transferencia';
 
   constructor(private http: HttpClient) {}
 
@@ -19,12 +19,10 @@ export class TransferenciaService {
     );
   }
 
-  agendarTransferencia(transferencia: Transferencia): Observable<Transferencia> {
-    return this.http.post<Transferencia>(this.apiUrl, transferencia).pipe(
-      catchError(this.handleError)
-    );
-  }
-
+    agendarTransferencia(transferencia: Transferencia): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}`, transferencia);
+    }
+  
   private handleError(error: any): Observable<never> {
     console.error('Erro na requisição:', error);
     return throwError(() => new Error('Erro ao realizar a operação. Tente novamente.'));

@@ -1,0 +1,10 @@
+button {
+  margin-right: 10px;
+  font-weight: bold;
+  background: #4d7498 !important;
+  border: #4d7498 !important;
+}
+
+button:hover{
+  background: linear-gradient(45deg,#51C8E0, #516EE0) !important;
+}

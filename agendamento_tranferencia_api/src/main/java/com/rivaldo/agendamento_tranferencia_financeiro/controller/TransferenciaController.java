@@ -23,6 +23,8 @@ public class TransferenciaController {
     @PostMapping
     public ResponseEntity<?> agendarTransferencia(@RequestBody Transferencia transferencia) {
         try {
+            System.out.println("Transferência recebida: " + transferencia);
+            System.out.println("Data de agendamento: " + transferencia.getDataAgendamento());
             Transferencia agendada = service.agendarTransferencia(transferencia);
             return ResponseEntity.ok(agendada);
         } catch (TaxaNaoAplicavelException e) {
@@ -32,7 +34,6 @@ public class TransferenciaController {
 
     @ExceptionHandler(TaxaNaoAplicavelException.class)
     public ResponseEntity<String> handleTaxaNaoAplicavelException(TaxaNaoAplicavelException ex) {
-        // Retorna erro 400 com a mensagem da exceção
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
@@ -42,6 +43,5 @@ public class TransferenciaController {
             @RequestParam(defaultValue = "5") int size) {
         return service.listarTransferencias(PageRequest.of(page, size));
     }
+
 }
-
-

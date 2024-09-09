@@ -13,13 +13,43 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let transferencia of transferencias">
-          <td>{{ transferencia.contaOrigem }}</td>
-          <td>{{ transferencia.contaDestino }}</td>
-          <td>{{ formatCurrency(transferencia.valor) }}</td>
-          <td>{{ (transferencia.taxa / 100) | percent:'1.1-1' }}</td>
-          <td>{{ transferencia.dataTransferencia | date:'dd/MM/yyyy' }}</td>
-          <td>{{ transferencia.dataAgendamento | date:'dd/MM/yyyy' }}</td>
+        <tr *ngFor="let transferencia of transferencias" [ngClass]="{'highlight-zero-tax': transferencia.taxa === 0}">
+          <td>
+            <div class="tooltip-container">
+              {{ transferencia.contaOrigem }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="tooltip-container">
+              {{ transferencia.contaDestino }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="tooltip-container">
+              {{ formatCurrency(transferencia.valor) }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="tooltip-container">
+              {{ formatCurrency(transferencia.taxa) }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="tooltip-container">
+              {{ transferencia.dataTransferencia | date:'dd/MM/yyyy' }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="tooltip-container">
+              {{ transferencia.dataAgendamento | date:'dd/MM/yyyy' }}
+              <span class="tooltip-text">{{ transferencia.aviso }}</span>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -42,4 +72,15 @@
       </li>
     </ul>
   </nav>
+
+  <div class="tooltip-container button-title">
+    <button type="submit" class="btn btn-primary" routerLink="/transferencia">
+        <i class="fa fa-hand-o-right"></i>
+    </button>
+    <span class="tooltip-text text-title">Fazer transferência</span>
+ </div>
+
+ <div class="square"></div>
+ <p class="p-legend"><strong>Legenda: </strong> Sem taxa %</p>
+
 </div>

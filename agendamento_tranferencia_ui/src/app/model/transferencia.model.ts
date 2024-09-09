@@ -6,5 +6,5 @@ export interface Transferencia {
   taxa: number;
   aviso?: string;
   dataTransferencia: string;
-  dataAgendamento?: string;
+  dataAgendamento: string | null;
 }

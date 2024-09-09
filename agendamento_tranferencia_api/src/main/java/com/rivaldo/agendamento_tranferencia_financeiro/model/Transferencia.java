@@ -90,4 +90,16 @@ public class Transferencia {
         this.dataAgendamento = dataAgendamento;
     }
 
+    @Override
+    public String toString() {
+        return "Transferencia{" +
+                "contaOrigem='" + contaOrigem + '\'' +
+                ", contaDestino='" + contaDestino + '\'' +
+                ", valor=" + valor +
+                ", taxa=" + taxa +
+                ", aviso='" + aviso + '\'' +
+                ", dataTransferencia=" + dataTransferencia +
+                ", dataAgendamento=" + dataAgendamento +
+                '}';
+    }
 }

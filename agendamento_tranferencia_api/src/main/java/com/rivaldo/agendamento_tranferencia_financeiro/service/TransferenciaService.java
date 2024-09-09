@@ -27,6 +27,8 @@ public class TransferenciaService {
     }
 
     public Transferencia agendarTransferencia(Transferencia transferencia) {
+        System.out.println("Transferência recebida: " + transferencia);
+
         double taxaPercentual = calcularTaxaPercentual(transferencia.getDataTransferencia());
 
         if (taxaPercentual < 0) {

@@ -7,6 +7,16 @@ import { ExtratoComponent } from './components/extrato/extrato.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule, Routes } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/transferencia', pathMatch: 'full' }, 
+  { path: 'transferencia', component: AgendarTransferenciaComponent },
+  { path: 'extrato', component: ExtratoComponent }
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +29,11 @@ import { NgxMaskModule } from 'ngx-mask';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    FontAwesomeModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
