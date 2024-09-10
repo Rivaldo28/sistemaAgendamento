@@ -1,7 +1,7 @@
 <div *ngIf="loading" class="loading">
   <app-loading></app-loading>
 </div>
-<div class="container mt-5 margin">
+<div class="container mt-5 margin" *ngIf="loading==false" >
   <h2 class="text-center mb-4">Agendar Transferência</h2>
   <form [formGroup]="transferenciaForm" (ngSubmit)="agendarTransferencia()">
     <div class="mb-3">

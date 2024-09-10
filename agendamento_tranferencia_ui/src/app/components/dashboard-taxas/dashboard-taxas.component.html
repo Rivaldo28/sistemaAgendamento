@@ -1,7 +1,7 @@
 <div *ngIf="loading" class="loading">
   <app-loading></app-loading>
 </div>
-<div class="container mt-5 margin">
+<div class="container mt-5 margin" *ngIf="loading==false">
   <h2 class="text-center mb-4">Dashboard de Taxas</h2>
 
   <!-- Gráfico de Taxas por Conta de Origem -->
