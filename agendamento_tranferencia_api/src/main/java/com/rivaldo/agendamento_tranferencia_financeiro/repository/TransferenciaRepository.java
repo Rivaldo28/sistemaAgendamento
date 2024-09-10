@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Repository
 public interface TransferenciaRepository extends JpaRepository<Transferencia, Long> {
+    Page<Transferencia> findAllByOrderByDataCriacaoDesc(Pageable pageable);
     @Query("SELECT t FROM Transferencia t WHERE t.dataTransferencia BETWEEN :startDate AND :endDate")
     Page<Transferencia> findByDataTransferenciaBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate,
                                                        Pageable pageable);

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class TransferenciaService {
     private TransferenciaRepository repository;
 
     public Page<Transferencia> listarTransferencias(Pageable pageable) {
-        return repository.findAll(pageable);
+        return repository.findAllByOrderByDataCriacaoDesc(pageable);
     }
 
     public Page<Transferencia> listarTransferenciasPorData(Date startDate, Date endDate, Pageable pageable) {
@@ -35,6 +36,7 @@ public class TransferenciaService {
 
         double taxa = (taxaPercentual / 100) * transferencia.getValor();
         transferencia.setTaxa(taxa);
+        transferencia.setDataCriacao(LocalDateTime.now());
         transferencia.setAviso("Transferência agendada com taxa de " + taxaPercentual + "%");
 
         transferencia.setDataAgendamento(LocalDate.now());

@@ -31,13 +31,13 @@
           </td>
           <td>
             <div class="tooltip-container">
-              {{ formatCurrency(transferencia.valor) }}
+              {{ transferencia.valor | currency: 'BRL' }}
               <span class="tooltip-text">{{ transferencia.aviso }}</span>
             </div>
           </td>
           <td>
             <div class="tooltip-container">
-              {{ formatCurrency(transferencia.taxa) }}
+              {{ transferencia.taxa | currency: 'BRL' }}
               <span class="tooltip-text">{{ transferencia.aviso }}</span>
             </div>
           </td>

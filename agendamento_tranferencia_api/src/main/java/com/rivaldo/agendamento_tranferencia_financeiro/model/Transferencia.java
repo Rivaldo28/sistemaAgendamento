@@ -1,10 +1,8 @@
 package com.rivaldo.agendamento_tranferencia_financeiro.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Transferencia {
@@ -25,6 +23,9 @@ public class Transferencia {
     private LocalDate dataTransferencia;
 
     private LocalDate dataAgendamento;
+
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
     public Long getId() {
         return id;
@@ -88,6 +89,14 @@ public class Transferencia {
 
     public void setDataAgendamento(LocalDate dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     @Override
